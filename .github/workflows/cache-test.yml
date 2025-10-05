@@ -1,7 +1,7 @@
 name: Cache Test Workflow
 
 on:
-  workflow_dispatch: # allows manual run
+  workflow_dispatch: # allows manual trigger
 
 jobs:
   cache-job:
@@ -12,14 +12,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Cache dependencies
-        id: cache-step
+        id: cache
         uses: actions/cache@v4
         with:
           path: ~/.cache/test-cache
           key: cache-fc604f0
 
-      - name: Prime cache
-        id: prime-cache-fc604f0
+      - name: prime-cache-fc604f0
         run: |
           if [ -d ~/.cache/test-cache ]; then
             echo "Cache hit!"
